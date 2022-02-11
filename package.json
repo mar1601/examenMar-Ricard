@@ -1,0 +1,12 @@
+{
+  "name": "examenmar",
+  "version": "1.0.0",
+  "description": "En aquest exercici anem a re-construir una versió nova de Movies.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
