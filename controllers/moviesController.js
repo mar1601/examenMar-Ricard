@@ -130,34 +130,34 @@ const addActors = (data_movie) => {
     // ...
     data_movie.clear();
     if (!data_movie.req.id)
-        throw new Error('Ups! parametro de entarada incorrecto');
+        throw new Error('Ups! Error');
 
     actorsModel.addActorToMovie(data_movie.req);
 
     getMovieById(data_movie);
 
 }
-// TODO: Nueva API devuelve todas las películas donde participa un actor
+// TODO: Nueva API devuelve todas las películas donde participa un actor 
+// código añadido por Mar 
+
 const getMoviesFromActor = (data_movie) => {
-    const actors = actorsModel.getActorsById();
-    let movies = [];
-
-    // código añadido por Mar 
-actors.forEach(element => {
-    if(element.actors.includes(data_movie.req.value)){
-        movies.push(element.id);
+    const actors = actorsModel.getActors();
+    let indx = [];
+    actors.forEach(element =>{
+        if(element.actors.includes(data_movie.req.value)){
+            indx.push(element.id);
+        }
+    });
+    if (indx.length <= 0){
+        throw new Error("Actor no encontrado");
     }
-});
 
-if (movies.length <= 0){
-    throw new Error("Actor no encontrado");
-}
-    movies.forEach(element => {
-        element.actors = actorsModel.getActorsById(element.id).actors;
-
-});
-    data_movie.res = movies;
-
+    indx.forEach(element =>{
+        let movie = moviesModel.getMovieById(element);
+        let actors = actorsModel.getActorsById(element);
+        movie.actors = actors.actors;
+        data_movie.res.push(movie)
+    });
 }
 
 export default {

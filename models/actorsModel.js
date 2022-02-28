@@ -34,18 +34,13 @@ class ActorsModel {
     }
 
     addActorToMovie(req) {
-        
-        //código añadido por Mar
-        const actor = this.addActorToMovie(req.actors);
-        if (typeof actor != 'undefined') {
-            this.removeActors(req.id);
-            this.addActorToMovie(req);
-        }
-        return actor;
+        //código modificado por Mar
+        const index = this.actors.findIndex(element => element.id == req.id);
+        if (index != -1) this.actors[index].actors.push(req.value);
     }
 
     updateActors(req) {
-        const actor = this.getActorsById(req.id);
+        const actor = this.getActorsBy(req.id);
         if (typeof actor != 'undefined') {
             this.removeActors(req.id);
             this.createActors(req);
@@ -55,11 +50,9 @@ class ActorsModel {
 
     getIDFromActor(req) {
         let movies=[];
-
-        //código añadido por Mar
-         return this.id.find(element=> element.actor== actor);
-        
-        }
+        //código modificado por Mar 
+    return this.actors.find(element => element.actors.find(element.id == id));
+    }
 }
-
+ 
 export default new ActorsModel()
