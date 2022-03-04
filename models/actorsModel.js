@@ -37,6 +37,7 @@ class ActorsModel {
         //código modificado por Mar
         const index = this.actors.findIndex(element => element.id == req.id);
         if (index != -1) this.actors[index].actors.push(req.value);
+        return index;
     }
 
     updateActors(req) {

@@ -142,24 +142,23 @@ const addActors = (data_movie) => {
 
 const getMoviesFromActor = (data_movie) => {
     const actors = actorsModel.getActors();
-    let indx = [];
+    let index = [];
     actors.forEach(element =>{
         if(element.actors.includes(data_movie.req.value)){
-            indx.push(element.id);
+            index.push(element.id);
         }
     });
-    if (indx.length <= 0){
+    if (index.length <= 0){
         throw new Error("Actor no encontrado");
     }
 
-    indx.forEach(element =>{
+    index.forEach(element => {
         let movie = moviesModel.getMovieById(element);
         let actors = actorsModel.getActorsById(element);
         movie.actors = actors.actors;
-        data_movie.res.push(movie)
+        data_movie.res.push(movie);
     });
 }
-
 export default {
     getAllMovies,
     getMovieById,
