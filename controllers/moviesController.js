@@ -138,6 +138,7 @@ const addActors = (data_movie) => {
 
 }
 // TODO: Nueva API devuelve todas las películas donde participa un actor 
+
 // código añadido por Mar 
 
 const getMoviesFromActor = (data_movie) => {
